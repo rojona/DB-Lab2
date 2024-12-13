@@ -1,0 +1,98 @@
+﻿<Window x:Class="DB_Lab2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DB_Lab2"
+        mc:Ignorable="d"
+        Title="Robin Andersson's Boop Shop Manager" Height="600" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Inventory">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                   
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <ComboBox x:Name="StoreSelector" Width="200" DisplayMemberPath="Store_Name"/>
+                        <Button x:Name="AddInventoryBtn" Content="Add Book" Width="100" 
+                                Margin="5,0" Click="AddInventoryBtn_Click"/>
+                        <Button x:Name="DeleteInventoryBtn" Content="Remove Book" Width="100" 
+                                Click="DeleteInventoryBtn_Click"/>
+                    </StackPanel>
+
+                    <DataGrid x:Name="InventoryGrid" Grid.Row="1" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ISBN" Binding="{Binding Book.ISBN13}"/>
+                            <DataGridTextColumn Header="Title" Binding="{Binding Book.Title}"/>
+                            <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+           
+            <TabItem Header="Books">
+               <Grid>
+                   <Grid.RowDefinitions>
+                       <RowDefinition Height="Auto"/>
+                       <RowDefinition Height="*"/>
+                   </Grid.RowDefinitions>
+
+                   <StackPanel Orientation="Horizontal" Margin="5">
+                       <TextBox x:Name="BookSearchBox" Width="200" HorizontalAlignment="Left" 
+                                TextChanged="BookSearchBox_TextChanged" Margin="5"
+                                ToolTip="Search by title or author"/>
+                       <Button x:Name="AddBookBtn" Content="Add Book" Width="100" Click="AddBookBtn_Click"/>
+                       <Button x:Name="EditBookBtn" Content="Edit" Width="100" Margin="5,0" Click="EditBookBtn_Click"/>
+                       <Button x:Name="DeleteBookBtn" Content="Delete" Width="100" Click="DeleteBookBtn_Click"/>
+                   </StackPanel>
+
+                   <DataGrid x:Name="BooksGrid" Grid.Row="1" AutoGenerateColumns="False" SelectionMode="Single">
+                       <DataGrid.Columns>
+                           <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN13}"/>
+                           <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
+                           <DataGridTextColumn Header="Language" Binding="{Binding Language}" />
+                           <DataGridTextColumn Header="Author" Binding="{Binding Author.First_Name}"/>
+                           <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
+                           <DataGridTextColumn Header="Publication Date" Binding="{Binding Publication_Date, StringFormat=d}"/>
+                       </DataGrid.Columns>
+                   </DataGrid>
+               </Grid>
+            </TabItem>
+
+            <TabItem Header="Authors">
+               <Grid>
+                   <Grid.RowDefinitions>
+                       <RowDefinition Height="Auto"/>
+                       <RowDefinition Height="*"/>
+                   </Grid.RowDefinitions>
+
+                   <StackPanel Orientation="Horizontal" Margin="5">
+                       <TextBox x:Name="AuthorSearchBox" Width="200" 
+                                TextChanged="AuthorSearchBox_TextChanged"
+                                Margin="5" />
+                       <Button x:Name="AddAuthorBtn" Content="Add Author" Width="100" 
+                               Margin="5,0" Click="AddAuthorBtn_Click"/>
+                       <Button x:Name="EditAuthorBtn" Content="Edit" Width="100" 
+                               Margin="5,0" Click="EditAuthorBtn_Click"/>
+                       <Button x:Name="DeleteAuthorBtn" Content="Delete" Width="100" 
+                               Click="DeleteAuthorBtn_Click"/>
+                   </StackPanel>
+
+                   <DataGrid x:Name="AuthorsGrid" Grid.Row="1" AutoGenerateColumns="False" SelectionMode="Single">
+                       <DataGrid.Columns>
+                           <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                           <DataGridTextColumn Header="First Name" Binding="{Binding First_Name}"/>
+                           <DataGridTextColumn Header="Last Name" Binding="{Binding Last_Name}"/>
+                           <DataGridTextColumn Header="Birth Date" Binding="{Binding Birth_Date, StringFormat=d}"/>
+                       </DataGrid.Columns>
+                   </DataGrid>
+               </Grid>
+            </TabItem>
+        </TabControl>
+        
+    </Grid>
+</Window>
