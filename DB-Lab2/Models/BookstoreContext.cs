@@ -1,8 +1,17 @@
-﻿namespace DB_Lab2.Models;
+﻿using Microsoft.Extensions.Configuration;
+
+namespace DB_Lab2.Models;
 using Microsoft.EntityFrameworkCore;
 
 public class BookstoreContext : DbContext
 {
+    private readonly IConfiguration _configuration;
+
+    public BookstoreContext(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
+    
     public DbSet<Author> Authors { get; set; }
     public DbSet<Language> Languages { get; set; }
     public DbSet<Book> Books { get; set; }
@@ -11,7 +20,7 @@ public class BookstoreContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(@"Server=DESKTOP-HS0U309;Database='Robin Andersson''s Book Shop';Trusted_Connection=True;TrustServerCertificate=True;");
+        optionsBuilder.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

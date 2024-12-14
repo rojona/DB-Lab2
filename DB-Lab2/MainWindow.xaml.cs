@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using DB_Lab2.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace DB_Lab2;
 
@@ -12,13 +13,12 @@ public partial class MainWindow : Window
 {
     private readonly BookstoreContext _context;
 
-    public MainWindow()
+    public MainWindow(IConfiguration configuration)
     {
         try
         {
             InitializeComponent();
-            _context = new BookstoreContext();
-            _context.Database.OpenConnection();
+            _context = new BookstoreContext(configuration);
             LoadData();
             RefreshBooks();
             RefreshAuthors();
