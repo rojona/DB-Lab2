@@ -4,7 +4,7 @@
 
 ## Setup
 1. Klona projektet
-2. Kör det medföljande database_setup.sql skriptet i SQL Server Management Studio för att skapa och populera databasen
+2. Kör det medföljande database.sql skriptet i SQL Server Management Studio
 3. Högerklicka på projektet i Solution Explorer och välj "Manage User Secrets"
 4. Lägg till följande i secrets.json och uppdatera connection string med din egen server:
 ```json
