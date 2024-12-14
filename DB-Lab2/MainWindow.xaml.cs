@@ -28,6 +28,9 @@ public partial class MainWindow : Window
             MessageBox.Show($"Detailed error: {ex.ToString()}\n\nInner exception: {ex.InnerException?.Message}");
         }
     }
+    
+    public MainWindow()
+    { }
 
     private void LoadData()
     {
